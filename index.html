@@ -16,30 +16,50 @@
             height: 100%;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #fff;
         }
 
         .page {
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            width: 100%;
             height: 100vh;
             height: 100dvh;
         }
 
-        /* --- Top section: logo + button --- */
-        .top {
+        /* --- Fullscreen background image --- */
+        .bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bg-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        /* --- Everything on top --- */
+        .content {
+            position: relative;
+            z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 32px 24px;
-            flex-shrink: 0;
+            height: 100%;
+            padding: 40px 24px;
         }
 
         .lang-toggle {
             position: fixed;
-            top: 12px;
-            right: 16px;
+            top: 14px;
+            right: 18px;
             font-size: 13px;
             display: flex;
             align-items: center;
@@ -53,26 +73,26 @@
             border: none;
             font-family: inherit;
             font-size: 13px;
-            color: #999;
+            color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             padding: 2px 4px;
             transition: color 0.2s;
         }
 
         .lang-toggle button.active {
-            color: #4430D9;
+            color: #fff;
             font-weight: 700;
         }
 
         .lang-toggle span {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .logo {
             max-width: 200px;
             width: 100%;
             height: auto;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
 
         .cta {
@@ -89,65 +109,35 @@
 
         .cta:hover {
             background: #3626b3;
-            box-shadow: 0 4px 14px rgba(68, 48, 217, 0.3);
+            box-shadow: 0 4px 14px rgba(68, 48, 217, 0.4);
         }
 
-        /* --- Bottom section: background image + text --- */
-        .hero {
-            flex: 1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.45);
-        }
-
-        .hero-text {
+        .disclaimer {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 24px 28px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 11px;
-            line-height: 1.6;
+            padding: 16px 24px;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 9px;
+            line-height: 1.5;
             text-align: center;
-            max-width: 700px;
+            max-width: 640px;
             margin: 0 auto;
         }
 
-        .hero-text p {
-            margin-bottom: 8px;
+        .disclaimer p {
+            margin-bottom: 6px;
         }
 
-        .hero-text p:last-child {
+        .disclaimer p:last-child {
             margin-bottom: 0;
         }
 
         @media (max-width: 480px) {
-            .top {
-                padding: 24px 20px;
-            }
-
             .logo {
                 max-width: 160px;
-                margin-bottom: 20px;
+                margin-bottom: 24px;
             }
 
             .cta {
@@ -155,34 +145,33 @@
                 padding: 11px 28px;
             }
 
-            .hero-text {
-                font-size: 10px;
-                padding: 16px 20px;
-                line-height: 1.5;
+            .disclaimer {
+                font-size: 8px;
+                padding: 12px 18px;
+                line-height: 1.45;
             }
         }
     </style>
 </head>
 <body>
-    <div class="lang-toggle">
-        <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
-        <span>|</span>
-        <button id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-
     <div class="page">
-        <div class="top">
+        <img src="fondo.jpg" alt="" class="bg-img">
+        <div class="bg-overlay"></div>
+
+        <div class="lang-toggle">
+            <button id="btn-es" class="active" onclick="setLang('es')">ES</button>
+            <span>|</span>
+            <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+
+        <div class="content">
             <img src="logo.png" alt="White Dragon Ultra" class="logo">
             <a id="cta-btn" class="cta" href="https://9a8892-89.myshopify.com" target="_blank" rel="noopener noreferrer">Acceder a la web oficial</a>
         </div>
 
-        <div class="hero">
-            <img src="fondo.jpg" alt="">
-            <div class="hero-overlay"></div>
-            <div class="hero-text">
-                <p id="text-1">La web linkeada en el siguiente bot&oacute;n es la web oficial de White Dragon Ultra, puedes saber que es leg&iacute;tima porque ahora mismo est&aacute;s dentro de whitedragonultra.com. Te llevar&aacute; a otro link con nuestra web d&oacute;nde podr&eacute;is proceder con la reserva de vuestro pack.</p>
-                <p id="text-2">&Uacute;ltimamente estamos siendo atacados por personas maliciosas, por lo que es importante comprobar la veracidad y la oficialidad de la web d&oacute;nde proces&eacute;is el pago. Ante cualquier duda sobre el tema, contactad con quien envi&oacute; vuestro contenido en veces pasadas, o con la federaci&oacute;n WNBF.</p>
-            </div>
+        <div class="disclaimer">
+            <p id="text-1">La web linkeada en el siguiente bot&oacute;n es la web oficial de White Dragon Ultra, puedes saber que es leg&iacute;tima porque ahora mismo est&aacute;s dentro de whitedragonultra.com. Te llevar&aacute; a otro link con nuestra web d&oacute;nde podr&eacute;is proceder con la reserva de vuestro pack.</p>
+            <p id="text-2">&Uacute;ltimamente estamos siendo atacados por personas maliciosas, por lo que es importante comprobar la veracidad y la oficialidad de la web d&oacute;nde proces&eacute;is el pago. Ante cualquier duda sobre el tema, contactad con quien envi&oacute; vuestro contenido en veces pasadas, o con la federaci&oacute;n WNBF.</p>
         </div>
     </div>
 
