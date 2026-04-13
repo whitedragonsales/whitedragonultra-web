@@ -58,9 +58,9 @@
 
         .lang-toggle {
             position: fixed;
-            top: 14px;
-            right: 18px;
-            font-size: 13px;
+            top: 16px;
+            right: 20px;
+            font-size: 16px;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -72,7 +72,7 @@
             background: none;
             border: none;
             font-family: inherit;
-            font-size: 13px;
+            font-size: 16px;
             color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
             padding: 2px 4px;
@@ -97,8 +97,8 @@
 
         .cta {
             display: inline-block;
-            background: #4430D9;
-            color: #fff;
+            background: #fff;
+            color: #4430D9;
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
@@ -108,8 +108,8 @@
         }
 
         .cta:hover {
-            background: #3626b3;
-            box-shadow: 0 4px 14px rgba(68, 48, 217, 0.4);
+            background: #f0edff;
+            box-shadow: 0 4px 14px rgba(255, 255, 255, 0.3);
         }
 
         .disclaimer {
@@ -135,6 +135,12 @@
         }
 
         @media (max-width: 480px) {
+            .bg-img {
+                object-fit: cover;
+                transform: scale(2.2);
+                transform-origin: center center;
+            }
+
             .logo {
                 max-width: 160px;
                 margin-bottom: 24px;
