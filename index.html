@@ -12,32 +12,47 @@
             box-sizing: border-box;
         }
 
-        body {
+        html, body {
+            height: 100%;
+            overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: #fff;
-            color: #000;
-            min-height: 100vh;
+        }
+
+        .page {
             display: flex;
+            flex-direction: column;
+            height: 100vh;
+            height: 100dvh;
+        }
+
+        /* --- Top section: logo + button --- */
+        .top {
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            padding: 32px 24px;
+            flex-shrink: 0;
         }
 
         .lang-toggle {
             position: fixed;
-            top: 20px;
-            right: 24px;
-            font-size: 14px;
+            top: 12px;
+            right: 16px;
+            font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             user-select: none;
+            z-index: 10;
         }
 
         .lang-toggle button {
             background: none;
             border: none;
             font-family: inherit;
-            font-size: 14px;
+            font-size: 13px;
             color: #999;
             cursor: pointer;
             padding: 2px 4px;
@@ -53,36 +68,21 @@
             color: #ccc;
         }
 
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 40px 24px;
-            text-align: center;
-        }
-
         .logo {
-            max-width: 230px;
+            max-width: 200px;
             width: 100%;
             height: auto;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
 
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 32px;
-            letter-spacing: -0.02em;
-        }
-
-.cta {
+        .cta {
             display: inline-block;
             background: #4430D9;
             color: #fff;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            padding: 14px 36px;
+            padding: 12px 32px;
             border-radius: 9999px;
             transition: background 0.2s, box-shadow 0.2s;
         }
@@ -92,18 +92,73 @@
             box-shadow: 0 4px 14px rgba(68, 48, 217, 0.3);
         }
 
+        /* --- Bottom section: background image + text --- */
+        .hero {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+        }
+
+        .hero-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 24px 28px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+            line-height: 1.6;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .hero-text p {
+            margin-bottom: 8px;
+        }
+
+        .hero-text p:last-child {
+            margin-bottom: 0;
+        }
+
         @media (max-width: 480px) {
+            .top {
+                padding: 24px 20px;
+            }
+
             .logo {
-                max-width: 180px;
+                max-width: 160px;
+                margin-bottom: 20px;
             }
 
-            h1 {
-                font-size: 24px;
+            .cta {
+                font-size: 14px;
+                padding: 11px 28px;
             }
 
-.cta {
-                width: 100%;
-                text-align: center;
+            .hero-text {
+                font-size: 10px;
+                padding: 16px 20px;
+                line-height: 1.5;
             }
         }
     </style>
@@ -115,26 +170,39 @@
         <button id="btn-en" onclick="setLang('en')">EN</button>
     </div>
 
-    <div class="container">
-        <img src="logo.png" alt="White Dragon Ultra" class="logo">
-        <h1 id="title">RESERVA TU PACK DE FOTO Y V&Iacute;DEO PARA WNBF</h1>
-        <a id="cta-btn" class="cta" href="https://9a8892-89.myshopify.com" target="_blank" rel="noopener noreferrer">Acceder a la web oficial</a>
+    <div class="page">
+        <div class="top">
+            <img src="logo.png" alt="White Dragon Ultra" class="logo">
+            <a id="cta-btn" class="cta" href="https://9a8892-89.myshopify.com" target="_blank" rel="noopener noreferrer">Acceder a la web oficial</a>
+        </div>
+
+        <div class="hero">
+            <img src="fondo.jpg" alt="">
+            <div class="hero-overlay"></div>
+            <div class="hero-text">
+                <p id="text-1">La web linkeada en el siguiente bot&oacute;n es la web oficial de White Dragon Ultra, puedes saber que es leg&iacute;tima porque ahora mismo est&aacute;s dentro de whitedragonultra.com. Te llevar&aacute; a otro link con nuestra web d&oacute;nde podr&eacute;is proceder con la reserva de vuestro pack.</p>
+                <p id="text-2">&Uacute;ltimamente estamos siendo atacados por personas maliciosas, por lo que es importante comprobar la veracidad y la oficialidad de la web d&oacute;nde proces&eacute;is el pago. Ante cualquier duda sobre el tema, contactad con quien envi&oacute; vuestro contenido en veces pasadas, o con la federaci&oacute;n WNBF.</p>
+            </div>
+        </div>
     </div>
 
     <script>
         var texts = {
             es: {
-                title: 'RESERVA TU PACK DE FOTO Y V\u00cdDEO PARA WNBF',
+                t1: 'La web linkeada en el siguiente bot\u00f3n es la web oficial de White Dragon Ultra, puedes saber que es leg\u00edtima porque ahora mismo est\u00e1s dentro de whitedragonultra.com. Te llevar\u00e1 a otro link con nuestra web d\u00f3nde podr\u00e9is proceder con la reserva de vuestro pack.',
+                t2: '\u00daltimamente estamos siendo atacados por personas maliciosas, por lo que es importante comprobar la veracidad y la oficialidad de la web d\u00f3nde proces\u00e9is el pago. Ante cualquier duda sobre el tema, contactad con quien envi\u00f3 vuestro contenido en veces pasadas, o con la federaci\u00f3n WNBF.',
                 cta: 'Acceder a la web oficial'
             },
             en: {
-                title: 'BOOK YOUR PHOTO AND VIDEO PACK FOR WNBF',
+                t1: 'The website linked in the button below is the official White Dragon Ultra website. You can verify its legitimacy because you are currently on whitedragonultra.com. It will take you to another link with our website where you can proceed with your pack reservation.',
+                t2: 'We have recently been targeted by malicious individuals, so it is important to verify the authenticity and legitimacy of the website where you process your payment. If you have any doubts, please contact whoever sent your content in previous occasions, or the WNBF federation.',
                 cta: 'Access the official website'
             }
         };
 
         function setLang(lang) {
-            document.getElementById('title').textContent = texts[lang].title;
+            document.getElementById('text-1').textContent = texts[lang].t1;
+            document.getElementById('text-2').textContent = texts[lang].t2;
             document.getElementById('cta-btn').textContent = texts[lang].cta;
             document.getElementById('btn-es').className = lang === 'es' ? 'active' : '';
             document.getElementById('btn-en').className = lang === 'en' ? 'active' : '';
